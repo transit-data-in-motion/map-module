@@ -24,13 +24,6 @@ const LeafletMap: FC<{
       map
     );
 
-    // map.setView(position, 13);
-
-    // L.marker(position)
-    //   .addTo(map)
-    //   .bindPopup("A pretty CSS3 popup.<br> Easily customizable.")
-    //   .openPopup();
-
     return () => {
       console.log("Cleaning up");
       leafletMap.unmount();

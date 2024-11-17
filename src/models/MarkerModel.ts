@@ -1,34 +1,36 @@
 import { RactiveModel } from "./BaseModel";
+import { LocationModel } from "./location.model";
 
 export class MarkerModel extends RactiveModel {
   public id: number;
-  private _lat: number;
-  private _lng: number;
+  private location: LocationModel;
 
-  constructor(id: number, lat: number, lng: number) {
-    super(id);
+  constructor(id: number, location: LocationModel) {
+    super();
     this.id = id;
-    this._lat = lat;
-    this._lng = lng;
+    this.location = location
+    this.location.addEffect(() => {
+      super.notify();
+    });
+  }
+
+  static fromLatLng(id: number, lat: number, lng: number): MarkerModel {
+    return new MarkerModel(id, new LocationModel(lat, lng));
   }
 
   set lat(lat: number) {
-    if (this._lat === lat) return;
-    this._lat = lat;
-    super.notify();
+    this.location.lat = lat;
   }
 
   get lat(): number {
-    return this._lat;
+    return this.location.lat;
   }
 
   set lng(lng: number) {
-    if (this._lng === lng) return;
-    this._lng = lng;
-    super.notify();
+    this.location.lng = lng;
   }
 
   get lng(): number {
-    return this._lng;
+    return this.location.lng;
   }
 }

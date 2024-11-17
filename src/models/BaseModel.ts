@@ -1,11 +1,8 @@
 
 export class RactiveModel {
-  public id: number;
   private effects: CallableFunction[] = [];
 
-  constructor(id: number) {
-    this.id = id;
-  }
+  constructor() {}
 
   addEffect(effect: CallableFunction): void {
     this.effects.push(effect);
